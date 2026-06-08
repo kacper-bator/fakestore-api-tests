@@ -1,26 +1,18 @@
 package com.bati.tests;
 
-import com.bati.config.ApiConfig;
-import io.restassured.RestAssured;
-import org.junit.jupiter.api.BeforeAll;
+import com.bati.api.ProductApi;
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
 
-public class ProductsIT {
+public class ProductsIT extends BaseTest {
 
-    @BeforeAll
-    static void setup() {
-        RestAssured.baseURI = ApiConfig.BASE_URL;
-    }
+    private final ProductApi productsApi = new ProductApi();
 
     @Test
     void shouldReturnAllProducts() {
-        given()
-                .when()
-                .get("/products")
+        productsApi.getAll()
                 .then()
                 .statusCode(200)
                 .body("size()", greaterThan(0));
@@ -28,9 +20,7 @@ public class ProductsIT {
 
     @Test
     void shouldReturnSingleProduct() {
-        given()
-                .when()
-                .get("/products/1")
+        productsApi.getById(1)
                 .then()
                 .statusCode(200)
                 .body("id", equalTo(1));
