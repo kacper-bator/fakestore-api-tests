@@ -10,10 +10,12 @@ Projekt automatycznych testów API dla https://fakestoreapi.com/
 - mvn -version
 ## Uruchomienie testów
 mvn verify
-
+### Przykładowe rezultat uruchomienia testu: 
+![img.png](img.png)
 ## Generowanie raportu - Raport otworzy się automatycznie w domyślnej przeglądarce.
 mvn allure:serve
-
+### Przykładowy raport
+![img_1.png](img_1.png)
 ---
 
 ## Technologie
